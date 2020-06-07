@@ -17,14 +17,24 @@ function buildMicrofrontend({ host, name, container }) {
 
       fetch(`${host}/asset-manifest.json`)
         .then(response => response.json())
-        .then(assets => assets.files['main.js'])
-        .then(mainJS => {
+        .then(assets => ({
+          js: assets.files['main.js'],
+          css: assets.files['main.css'],
+        }))
+        .then(({ js, css }) => {
           const script = document.createElement('script');
-          script.id = scriptId
+          const styles = document.createElement('link');
+
+          styles.href = `${host}${css}`;
+          styles.rel = 'stylesheet';
+
+          script.id = scriptId;
           script.crossOrigin = '';
-          script.src = `${host}${mainJS}`
-          script.onload = renderMicrofrontend
-          document.head.appendChild(script)
+          script.src = `${host}${js}`;
+          script.onload = renderMicrofrontend;
+
+          document.head.appendChild(styles);
+          document.head.appendChild(script);
         })
 
         return () => {
