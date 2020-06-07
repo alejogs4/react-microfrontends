@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+window.renderProducts = function renderProducts({ container, history }) {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App history={history} />
+    </React.StrictMode>,
+    document.getElementById(container)
+  );
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+window.unmountProducts = function unmountProducts(container) {
+  ReactDOM.unmountComponentAtNode(document.getElementById(container))
+}

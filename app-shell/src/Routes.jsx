@@ -9,11 +9,18 @@ const CustomersMicrofrontend = buildMicrofrontend({
   container: 'customers',
 })
 
+const ProductsMicrofrontend = buildMicrofrontend({
+  host: 'http://localhost:3002',
+  name: 'Products',
+  container: 'products',
+})
+
 function Routes() {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/customers" component={CustomersMicrofrontend} />
+      <Route exact path="/products" component={ProductsMicrofrontend} />
     </Switch>
   )
 }

@@ -13,7 +13,7 @@ function Menu() {
           <Link href="/customers" to="/customers">Customer profile</Link>
         </li>
         <li>
-          <Link>Products</Link>
+          <Link href="/products" to="/products">Products</Link>
         </li>
         <li>
           <Link>Shippings</Link>
